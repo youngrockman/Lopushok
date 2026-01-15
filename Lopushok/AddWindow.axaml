@@ -25,7 +25,6 @@
 			<Button Content="Назад" Click="Back_Click" Margin="5"></Button>
 			<Button Content="Добавить продукт" Click="AddProduct_Click" Margin="5"></Button>
 			<Button Content="Добавить изображние" Click="AddImage_Click" Margin="5"></Button>
-            <Button Content="Добавить материал к товару" Click="AddMaterial_Click" Margin="5"></Button>
         </StackPanel>
 
         <ListBox>

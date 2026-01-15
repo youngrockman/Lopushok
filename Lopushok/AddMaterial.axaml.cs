@@ -16,13 +16,7 @@ public partial class AddMaterial : Window
         InitializeComponent();
     }
 
-    public AddMaterial(int id)
-    {
-        InitializeComponent();
-        _currentProductId = id;
-        LoadMaterialBox();
-
-    }
+   
 
     private void BackButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {

@@ -4,6 +4,8 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Lopushok.Models;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using System;
 using System.IO;
 using System.Linq;
@@ -33,8 +35,72 @@ public partial class AddWindow : Window
         addMaterialWindow.ShowDialog(this);
     }
 
+
+    private bool Validation()
+    {
+        if (string.IsNullOrEmpty(NameBox.Text) || string.IsNullOrEmpty(ArticleBox.Text) || string.IsNullOrEmpty(TypeBox.SelectedItem.ToString())
+            || string.IsNullOrEmpty(PeopleBox.Text) || string.IsNullOrEmpty(ZavodBox.Text) || string.IsNullOrEmpty(MinCostBox.Text))
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Не должно быть пустых полей", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        if (!int.TryParse(PeopleBox.Text, out int people))
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Количество человек должно быть числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        if (people <= 0)
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Количество человек должно быть положительным числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        
+        if (!int.TryParse(ZavodBox.Text, out int zavod))
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Номер цеха должен быть числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        if (zavod <= 0)
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Номер цеха должен быть положительным числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        
+        if (!decimal.TryParse(MinCostBox.Text, out decimal minCost))
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Минимальная стоимость должна быть числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        if (minCost <= 0)
+        {
+            var errorMessage = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Минимальная стоимость должна быть положительным числом", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+            errorMessage.ShowAsync();
+            return false;
+        }
+
+        return true;
+    }
+
     private async void AddProduct_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+        if (!Validation())
+        {
+            return;
+        }
+
+
         using var context = new DemoContext();
         var p = int.TryParse(PeopleBox.Text, out int people);
         var z = int.TryParse(ZavodBox.Text, out int zavod);
@@ -61,10 +127,12 @@ public partial class AddWindow : Window
         context.Products.Add(newProduct);
         await context.SaveChangesAsync();
 
-        var addMaterialWindow = new AddMaterial(newProduct.Id);
-        addMaterialWindow.ShowDialog(this);
+        var successMessage = MessageBoxManager.GetMessageBoxStandard("Успех", "Продукт успешно добавлен", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
+        await successMessage.ShowAsync();
 
-
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+        this.Close();
     }
 
     private async void AddImage_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -102,8 +170,5 @@ public partial class AddWindow : Window
         TypeBox.ItemsSource = typeProducts;
     }
 
-    private void LoadMaterialListBox()
-    {
-
-    }
+    
 }
