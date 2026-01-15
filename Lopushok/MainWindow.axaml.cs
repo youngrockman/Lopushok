@@ -19,7 +19,7 @@ public partial class MainWindow : Window
     {
         using var context = new DemoContext();
 
-        var allProducts = context.Products.Include(x => x.Producttype).Include(x => x.Productmaterials).ToList();
+        var allProducts = context.Products.Include(x => x.Producttype).Include(x => x.Productmaterials).ThenInclude(x => x.Material).ToList();
 
         if (!string.IsNullOrEmpty(SearchBox.Text))
         {
@@ -62,13 +62,10 @@ public partial class MainWindow : Window
 
             var productType = context.Producttypes.FirstOrDefault(x => x.Title == productTypeTitle);
 
-            if(productType != null)
+            if (productType != null)
             {
                 allProducts = allProducts.Where(x => x.Producttypeid == productType.Id).ToList();
             }
-
-            
-
         }
 
         ProductsBox.ItemsSource = allProducts;
@@ -82,7 +79,7 @@ public partial class MainWindow : Window
         using var context = new DemoContext();
         var filteredProducts = context.Producttypes.Select(x => x.Title).ToList();
         filteredProducts.Add("Все типы");
-        FilterBox.ItemsSource = filteredProducts.OrderByDescending(x=> x == "Все типы");
+        FilterBox.ItemsSource = filteredProducts.OrderByDescending(x => x == "Все типы");
     }
 
 
@@ -100,6 +97,13 @@ public partial class MainWindow : Window
     private void FilterBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         LoadProducts();
+    }
+
+    private void AddWindow_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var addWindow = new AddWindow();
+        addWindow.Show();
+        this.Close();
     }
 
     //Посхалка для Марка
