@@ -38,6 +38,18 @@ public partial class Product
     }
 
 
+    public string MaterialsList
+    {
+        get
+        {
+            if (Productmaterials == null || !Productmaterials.Any())
+                return "Материалы не указаны";
+
+            return string.Join(", ", Productmaterials.Where(x => x.Material != null).Select(x => $"{x.Material.Title} ({x.Count} шт.)"));
+        }
+    }
+
+
     public decimal TotalCost
     {
         get

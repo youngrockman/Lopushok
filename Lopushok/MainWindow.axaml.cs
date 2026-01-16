@@ -106,5 +106,18 @@ public partial class MainWindow : Window
         this.Close();
     }
 
+    private void ProductListBox_Click(object? sender, Avalonia.Input.TappedEventArgs e)
+    {
+        if(ProductsBox.SelectedItem is Product product)
+        {
+            var editWindow = new EditWindow(product);
+            editWindow.Show();
+            this.Close();
+        }
+
+
+        
+    }
+
     //Посхалка для Марка
 }

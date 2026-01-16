@@ -3,7 +3,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="Images/lopux.ico"
+        x:CompileBindings="false"
         x:Class="Lopushok.EditWindow"
-        Title="EditWindow">
-  Welcome to Avalonia!
+        Title="Окно редактирования">
+
+    <DockPanel>
+
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5"  DockPanel.Dock="Top">
+		<TextBox Margin="5" Watermark="Введите название" Name="NameBox" Width="400"/>
+		<TextBox Margin="5" Watermark="Введите арртикул" Name="ArticleBox" Width="400"/>
+		<ComboBox Margin="5" Width="400" Name="TypeBox" HorizontalAlignment="Center"></ComboBox>
+		<TextBox Margin="5" Watermark="Введите количество человек для производства" Name="PeopleBox" Width="400"/>
+		<TextBox Margin="5" Watermark="Введите номер производственного цеха" Name="ZavodBox" Width="400"/>
+		<TextBox Margin="5" Watermark="Введите минимальную стоимость для агента" Name="MinCostBox" Width="400"/>
+		<TextBox Margin="5" Watermark="Введите описание" Name="DescriptionBox" Width="400" TextWrapping="Wrap"/>
+        <Image Height="80" Width="80" Margin="5" Name="ImageBox"/>
+    </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+			<Button Content="Назад" Click="Back_Click" Margin="5"></Button>
+			<Button Content="Добавить продукт" Click="AddProduct_Click" Margin="5"></Button>
+			<Button Content="Добавить изображние" Click="AddImage_Click" Margin="5"></Button>
+        </StackPanel>
+
+    <ListBox>
+    <ListBox.ItemsPanel>
+		<ItemsPanelTemplate>
+			<UniformGrid Columns="1"></UniformGrid>
+        </ItemsPanelTemplate>
+    </ListBox.ItemsPanel>
+    <ListBox>
+		<ListBox.ItemTemplate>
+			<DataTemplate>
+				<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="5">
+					<TextBlock Text="{Binding Materialid}" Margin="5" HorizontalAlignment="Left"/> 
+					<TextBlock Text="{Binding Count}" Margin="5" HorizontalAlignment="Left"/>
+                    <Button Content="Удалить" Tag="{Binding Materialid}" HorizontalAlignment="Right"></Button>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</ListBox>
+
+</DockPanel>
+
+
+
 </Window>

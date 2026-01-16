@@ -27,25 +27,6 @@
 			<Button Content="Добавить изображние" Click="AddImage_Click" Margin="5"></Button>
         </StackPanel>
 
-        <ListBox>
-            <ListBox.ItemsPanel>
-				<ItemsPanelTemplate>
-					<UniformGrid Columns="1"></UniformGrid>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox>
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="5">
-							<TextBlock Text="{Binding Materialid}" Margin="5" HorizontalAlignment="Left"/> 
-							<TextBlock Text="{Binding Count}" Margin="5" HorizontalAlignment="Left"/>
-                            <Button Content="Удалить" Tag="{Binding Materialid}" HorizontalAlignment="Right"></Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ListBox>
-    
 
 
 </DockPanel>
