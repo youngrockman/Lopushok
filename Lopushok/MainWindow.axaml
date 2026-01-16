@@ -47,7 +47,7 @@
                             
                             <StackPanel VerticalAlignment="Top">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Producttypeid}" 
+                                    <TextBlock Text="{Binding TitleTypeId}" 
                                                FontSize="14" />
                                     <TextBlock Text=" | " 
                                                FontSize="14" 

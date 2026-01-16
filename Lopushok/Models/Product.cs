@@ -20,6 +20,24 @@ public partial class Product
 
     public string? Image { get; set; }
 
+    public string TitleTypeId
+    {
+        get
+        {
+            using var context = new DemoContext();
+
+
+            var titleTypeId = context.Producttypes.FirstOrDefault(x=>x.Id == this.Producttypeid);
+
+            
+            string? title = titleTypeId.Title;
+            
+
+            return title;
+
+        }
+    }
+
     public Bitmap ParseImage 
     { 
         get
@@ -42,8 +60,7 @@ public partial class Product
     {
         get
         {
-            if (Productmaterials == null || !Productmaterials.Any())
-                return "Материалы не указаны";
+            if (Productmaterials == null || !Productmaterials.Any()) return "Материалы не указаны";
 
             return string.Join(", ", Productmaterials.Where(x => x.Material != null).Select(x => $"{x.Material.Title} ({x.Count} шт.)"));
         }

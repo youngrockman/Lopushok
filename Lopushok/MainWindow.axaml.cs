@@ -45,10 +45,10 @@ public partial class MainWindow : Window
                 allProducts = allProducts.OrderByDescending(x => x.Productionworkshopnumber).ToList();
                 break;
             case 5:
-                allProducts = allProducts.OrderBy(x => x.Mincostforagent).ToList();
+                allProducts = allProducts.OrderBy(x => x.TotalCost).ToList();
                 break;
             case 6:
-                allProducts = allProducts.OrderByDescending(x => x.Mincostforagent).ToList();
+                allProducts = allProducts.OrderByDescending(x => x.TotalCost).ToList();
                 break;
             default:
                 allProducts = allProducts.OrderBy(x => x.Id).ToList();
