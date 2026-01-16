@@ -22,9 +22,9 @@
     </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-			<Button Content="Назад" Click="Back_Click" Margin="5"></Button>
-			<Button Content="Добавить продукт" Click="AddProduct_Click" Margin="5"></Button>
-			<Button Content="Добавить изображние" Click="AddImage_Click" Margin="5"></Button>
+			<Button Content="Назад" Click="Back_Click" Margin="5" Background="#00CC76"></Button>
+			<Button Content="Добавить продукт" Click="AddProduct_Click" Margin="5" Background="#00CC76"></Button>
+			<Button Content="Добавить изображние" Click="AddImage_Click" Margin="5" Background="#00CC76"></Button>
         </StackPanel>
 
 

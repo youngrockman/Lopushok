@@ -11,8 +11,8 @@
     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 		<ComboBox Name="MaterialBox" Width="200" Margin="5" HorizontalAlignment="Center"></ComboBox>
         <TextBox Name="CountBox" Width="200" Margin="5" Watermark="Введите колитчество"></TextBox>
-        <Button Margin="5" Content="Назад" Click="BackButton_Click" HorizontalAlignment="Center"></Button>
-        <Button Margin="5" Content="Добавить" Click="AddButton_Click" HorizontalAlignment="Center"></Button>
+        <Button Margin="5" Content="Назад" Click="BackButton_Click" HorizontalAlignment="Center" Background="#00CC76"></Button>
+        <Button Margin="5" Content="Добавить" Click="AddButton_Click" HorizontalAlignment="Center" Background="#00CC76"></Button>
     </StackPanel>
 
 

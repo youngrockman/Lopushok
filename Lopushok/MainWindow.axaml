@@ -21,7 +21,7 @@
                 <ComboBoxItem>Стоимость (↓)</ComboBoxItem>
             </ComboBox>
             <ComboBox Name="FilterBox" Width="200" Margin="5" SelectionChanged="FilterBox_SelectionChanged"/>
-            <Button Content="Добавить продукт" Click="AddWindow_Click"/>
+            <Button Content="Добавить продукт" Click="AddWindow_Click" Background="#00CC76"/>
         </StackPanel>
 
        
